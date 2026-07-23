@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  
+  <style>
+    /* CSS Variables for easy color management */
+    :root {
+      --primary-color: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg-color: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --error-color: #ef4444;
+      --border-color: #d1d5db;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--text-main);
+    }
+
+    /* Smooth Card Container */
+    .form-container {
+      background-color: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 400px;
+      transition: transform 0.3s ease;
+    }
+
+    .form-container:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.75rem;
+      color: var(--text-main);
+    }
+
+    /* Input Grouping and Spacing */
+    .input-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    /* Smooth focus effects */
+    input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    /* Error Text Styling */
+    .error-message {
+      color: var(--error-color);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      display: block;
+      min-height: 1.2rem;
+    }
+
+    input.invalid {
+      border-color: var(--error-color);
+      background-color: #fef2f2;
+    }
+
+    /* Button Group Formatting */
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    button[type="submit"] {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--primary-hover);
+    }
+
+    button[type="reset"] {
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    button[type="reset"]:hover {
+      background-color: #f9fafb;
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <form id="registrationForm" novalidate>
+      <h1>Registration</h1>
+      
+      <div class="input-group">
+        <label for="un">Username</label>
+        <input type="text" id="un" name="un" placeholder="Enter username">
+        <span class="error-message" id="unError"></span>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="6-digit PIN">
+        <span class="error-message" id="pwdError"></span>
+      </div>
+
+      <div class="button-group">
+        <button type="submit">Submit</button>
+        <button type="reset" id="resetBtn">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("registrationForm");
+      const unInput = document.getElementById("un");
+      const pwdInput = document.getElementById("password");
+      const unError = document.getElementById("unError");
+      const pwdError = document.getElementById("pwdError");
+      const resetBtn = document.getElementById("resetBtn");
+
+      // Helper function to clear errors
+      const clearErrors = () => {
+        unError.textContent = "";
+        pwdError.textContent = "";
+        unInput.classList.remove("invalid");
+        pwdInput.classList.remove("invalid");
+      };
+
+      form.addEventListener("submit", (event) => {
+        // Prevent form submission to run validation first
+        event.preventDefault(); 
+        clearErrors();
+
+        let isValid = true;
+        const unValue = unInput.value.trim();
+        const pwdValue = pwdInput.value.trim();
+
+        // Username Validation
+        if (!unValue) {
+          unError.textContent = "Username cannot be empty.";
+          unInput.classList.add("invalid");
+          isValid = false;
+        }
+
+        // Password Validation (Must be exactly 6 digits)
+        if (!pwdValue || isNaN(pwdValue) || pwdValue.length !== 6) {
+          pwdError.textContent = "Password must be exactly 6 numbers.";
+          pwdInput.classList.add("invalid");
+          isValid = false;
+        }
+
+        if (isValid) {
+          // If everything is correct, you can submit the form manually or trigger an API
+          alert("Registration Successful!"); 
+          form.reset();
+        }
+      });
+
+      // Clear errors on reset
+      resetBtn.addEventListener("click", clearErrors);
+    });
+  </script>
+
+</body>
+</html>

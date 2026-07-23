@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form | NextGen</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="family">
+
+  <style>
+    /* Premium Futuristic Palette & Variables */
+    :root {
+      --orbit-navy-deep: #060b19;
+      --orbit-navy-card: rgba(10, 20, 47, 0.7);
+      --electric-blue: #00e5ff;
+      --electric-blue-glow: rgba(0, 229, 255, 0.4);
+      --electric-blue-hover: #00b8d4;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --error-color: #ff3b30;
+      --error-glow: rgba(255, 59, 48, 0.2);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(0, 229, 255, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--orbit-navy-deep);
+      /* Subtle radial gradient to create depth like a deep-space orbit */
+      background-image: radial-gradient(circle at 50% 50%, #0d1b3e 0%, var(--orbit-navy-deep) 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--text-main);
+      overflow: hidden;
+    }
+
+    /* Glassmorphism Card Container with Cyber Glow */
+    .form-container {
+      background: var(--orbit-navy-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 3rem 2.5rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
+                  0 0 40px rgba(0, 229, 255, 0.03);
+      width: 100%;
+      max-width: 420px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .form-container:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 229, 255, 0.2);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                  0 0 50px rgba(0, 229, 255, 0.06);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Input Grouping and Spacing */
+    .input-group {
+      margin-bottom: 1.75rem;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      font-size: 1rem;
+      color: #ffffff;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Electric Blue Focus Effects */
+    input:focus {
+      border-color: var(--border-focus);
+      background: rgba(0, 229, 255, 0.02);
+      box-shadow: 0 0 0 4px var(--electric-blue-glow),
+                  inset 0 0 10px rgba(0, 229, 255, 0.1);
+    }
+
+    .input-group:focus-within label {
+      color: var(--electric-blue);
+    }
+
+    /* Error Text Styling */
+    .error-message {
+      color: var(--error-color);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      display: block;
+      min-height: 1.2rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    input.invalid {
+      border-color: var(--error-color);
+      background-color: rgba(255, 59, 48, 0.05);
+    }
+    
+    input.invalid:focus {
+      box-shadow: 0 0 0 4px var(--error-glow);
+    }
+
+    /* Button Group Formatting */
+    .button-group {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+
+    button {
+      flex: 1;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    /* Electric Blue Primary Button */
+    button[type="submit"] {
+      background: linear-gradient(135deg, var(--electric-blue) 0%, #00b0ff 100%);
+      color: #060b19;
+      box-shadow: 0 4px 20px rgba(0, 229, 255, 0.25);
+    }
+
+    button[type="submit"]:hover {
+      background: linear-gradient(135deg, #33ecff 0%, #1ab7ff 100%);
+      box-shadow: 0 6px 24px rgba(0, 229, 255, 0.4);
+    }
+
+    /* Minimalist Orbit Navy Reset Button */
+    button[type="reset"] {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    button[type="reset"]:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <form id="registrationForm" novalidate>
+      <h1>Create Account</h1>
+      
+      <div class="input-group">
+        <label for="un">Username</label>
+        <div class="input-wrapper">
+          <input type="text" id="un" name="un" placeholder="Enter username" autocomplete="off">
+        </div>
+        <span class="error-message" id="unError"></span>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Security PIN</label>
+        <div class="input-wrapper">
+          <input type="password" id="password" name="password" placeholder="6-digit PIN">
+        </div>
+        <span class="error-message" id="pwdError"></span>
+      </div>
+
+      <div class="button-group">
+        <button type="reset" id="resetBtn">Reset</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("registrationForm");
+      const unInput = document.getElementById("un");
+      const pwdInput = document.getElementById("password");
+      const unError = document.getElementById("unError");
+      const pwdError = document.getElementById("pwdError");
+      const resetBtn = document.getElementById("resetBtn");
+
+      const clearErrors = () => {
+        unError.textContent = "";
+        pwdError.textContent = "";
+        unInput.classList.remove("invalid");
+        pwdInput.classList.remove("invalid");
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); 
+        clearErrors();
+
+        let isValid = true;
+        const unValue = unInput.value.trim();
+        const pwdValue = pwdInput.value.trim();
+
+        if (!unValue) {
+          unError.textContent = "Username cannot be empty.";
+          unInput.classList.add("invalid");
+          isValid = false;
+        }
+
+        if (!pwdValue || isNaN(pwdValue) || pwdValue.length !== 6) {
+          pwdError.textContent = "Password must be exactly 6 numbers.";
+          pwdInput.classList.add("invalid");
+          isValid = false;
+        }
+
+        if (isValid) {
+          alert("Registration Successful!"); 
+          form.reset();
+        }
+      });
+
+      resetBtn.addEventListener("click", clearErrors);
+    });
+  </script>
+
+</body>
+</html>

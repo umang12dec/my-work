@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>ug</title>
+
+  
+  <script>
+function validateForm()
+{
+var x=document.ug.un.value;
+var y=document.ug.password.value;
+if(x==null || x=="")
+{
+	alert("Please Enter The Username");
+	document.ug.un.focus();
+	return false;
+}
+if(y==""|| isNaN(y) || y.length>6 || y.length<6)
+{
+	alert("Please Enter the Password Properly")
+	document.ug.password.focus();
+	return false;
+}
+}
+  </script>
+<style type="text/css">
+body {
+  margin: 20%;
+}
+
+</style></head><body>
+<form onsubmit="return validateForm()" method="post" action="ug.html" name="ug">
+  <h1 style="text-align: center;"><big>Registration Form</big></h1>
+  <label><big><big><span style="font-family: Candara;">Username</span></big></big></label>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <input name="un"><br>
+  <br>
+  <label><big><big><span style="font-family: Candara;">Password</span></big></big></label>
+&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input name="password" type="password"><big><big><span style="font-family: Candara;"></span></big></big><big><big><span style="font-family: Candara;"><br>
+  <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <input name="Submit" value="Submit" type="submit">&nbsp;&nbsp;&nbsp; <input name="Reset" value="Reset" type="reset"><br>
+  </span></big></big> <br>
+</form>
+
+</body></html>

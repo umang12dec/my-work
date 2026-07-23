@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus // Registration</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Premium Color Token Architecture */
+    :root {
+      --matrix-deep: #0a0b10;
+      --matrix-surface: #12141c;
+      --matrix-card: #1a1d29;
+      --acid-lime: #ccff00;
+      --acid-lime-dim: #a3cc00;
+      --acid-glow: rgba(204, 255, 0, 0.15);
+      --text-primary: #ffffff;
+      --text-secondary: #8b949e;
+      --error-red: #ff3366;
+      --border-muted: rgba(255, 255, 255, 0.07);
+      --border-focus: rgba(204, 255, 0, 0.5);
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--matrix-deep);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: var(--text-primary);
+      padding: 1.5rem;
+      overflow-x: hidden;
+    }
+
+    /* Split Screen Container Inspired by Reference UI */
+    .super-container {
+      display: flex;
+      background-color: var(--matrix-surface);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 960px;
+      min-height: 600px;
+      overflow: hidden;
+      border: 1px solid var(--border-muted);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Left Side: Limelight Brand Engine */
+    .brand-side {
+      flex: 1.1;
+      background: linear-gradient(135deg, rgba(10,11,16,0.8) 0%, rgba(26,29,41,0.6) 100%), 
+                  url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      border-right: 1px solid var(--border-muted);
+    }
+
+    .brand-side::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, var(--acid-glow) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span {
+      color: var(--acid-lime);
+    }
+
+    .brand-hero-text h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .brand-hero-text h2 em {
+      font-style: normal;
+      color: var(--acid-lime);
+      text-shadow: 0 0 30px var(--acid-glow);
+    }
+
+    .brand-hero-text p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Right Side: High-End Interactive Form */
+    .form-side {
+      flex: 0.9;
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: var(--matrix-surface);
+    }
+
+    .form-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .form-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-header p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .form-header p a {
+      color: var(--acid-lime);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+    }
+
+    .form-header p a:hover {
+      color: var(--text-primary);
+    }
+
+    .input-group {
+      margin-bottom: 1.75rem;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      transition: var(--transition-smooth);
+    }
+
+    /* Glassmorphic input fields with high reactivity */
+    input {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-muted);
+      border-radius: 12px;
+      font-size: 1rem;
+      color: var(--text-primary);
+      transition: var(--transition-smooth);
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    input:focus {
+      border-color: var(--border-focus);
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 0 4px var(--acid-glow), inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .input-group:focus-within label {
+      color: var(--acid-lime);
+    }
+
+    /* Error Validation States */
+    .error-message {
+      color: var(--error-red);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      display: block;
+      min-height: 1.2rem;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: var(--transition-smooth);
+    }
+
+    .error-message.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    input.invalid {
+      border-color: var(--error-red) !important;
+      background-color: rgba(255, 51, 102, 0.05);
+      box-shadow: 0 0 0 4px rgba(255, 51, 102, 0.15) !important;
+    }
+
+    /* Advanced Functional Button Layout */
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 1.1rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      transition: var(--transition-smooth);
+    }
+
+    button[type="submit"] {
+      background-color: var(--acid-lime);
+      color: var(--matrix-deep);
+      box-shadow: 0 8px 24px rgba(204, 255, 0, 0.2);
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--text-primary);
+      box-shadow: 0 12px 32px rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+    }
+
+    button[type="reset"] {
+      background-color: transparent;
+      border: 1px solid var(--border-muted);
+      color: var(--text-secondary);
+    }
+
+    button[type="reset"]:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--text-primary);
+    }
+
+    /* Responsive Architecture breakpoint */
+    @media (max-width: 868px) {
+      .super-container {
+        flex-direction: column;
+        max-width: 480px;
+        min-height: auto;
+      }
+      .brand-side {
+        padding: 2.5rem;
+        min-height: 220px;
+        gap: 2rem;
+      }
+      .brand-hero-text h2 {
+        font-size: 1.8rem;
+      }
+      .brand-hero-text p {
+        display: none;
+      }
+      .form-side {
+        padding: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="super-container">
+    <div class="brand-side">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#ccff00"/>
+          <path d="M2 17L12 22L22 17" stroke="#ccff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="#ccff00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        NEXUS<span>.</span>
+      </div>
+      
+      <div class="brand-hero-text">
+        <h2>Capturing Moments,<br>Creating <em>Memories.</em></h2>
+        <p>Access the next generation console interface. Manage your nodes, security protocols, and architecture effortlessly.</p>
+      </div>
+    </div>
+
+    <div class="form-side">
+      <div class="form-header">
+        <h1>Create an account</h1>
+        <p>Already have an account? <a href="#">Log in</a></p>
+      </div>
+
+      <form id="registrationForm" novalidate>
+        <div class="input-group">
+          <label for="un">Username</label>
+          <input type="text" id="un" name="un" placeholder="e.g., fletcher_matrix" autocomplete="off">
+          <span class="error-message" id="unError"></span>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Security PIN</label>
+          <input type="password" id="password" name="password" placeholder="••••••" maxlength="6">
+          <span class="error-message" id="pwdError"></span>
+        </div>
+
+        <div class="button-group">
+          <button type="submit">Create account</button>
+          <button type="reset" id="resetBtn">Reset Systems</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("registrationForm");
+      const unInput = document.getElementById("un");
+      const pwdInput = document.getElementById("password");
+      const unError = document.getElementById("unError");
+      const pwdError = document.getElementById("pwdError");
+      const resetBtn = document.getElementById("resetBtn");
+
+      // Refactored sleek micro-interactions for errors
+      const showError = (element, message, inputTarget) => {
+        element.textContent = message;
+        element.classList.add("active");
+        inputTarget.classList.add("invalid");
+      };
+
+      const clearErrors = () => {
+        unError.textContent = "";
+        pwdError.textContent = "";
+        unError.classList.remove("active");
+        pwdError.classList.remove("active");
+        unInput.classList.remove("invalid");
+        pwdInput.classList.remove("invalid");
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); 
+        clearErrors();
+
+        let isValid = true;
+        const unValue = unInput.value.trim();
+        const pwdValue = pwdInput.value.trim();
+
+        if (!unValue) {
+          showError(unError, "Username required for handshake initialization.", unInput);
+          isValid = false;
+        }
+
+        if (!pwdValue || isNaN(pwdValue) || pwdValue.length !== 6) {
+          showError(pwdError, "Security PIN must be exactly 6 numeric digits.", pwdInput);
+          isValid = false;
+        }
+
+        if (isValid) {
+          // Micro-feedback instead of standard layout alert
+          alert("? Core Handshake Successful. Welcome to Nexus."); 
+          form.reset();
+        }
+      });
+
+      resetBtn.addEventListener("click", () => {
+        clearErrors();
+        form.reset();
+      });
+    });
+  </script>
+
+</body>
+</html>
